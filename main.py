@@ -10,8 +10,8 @@ from config import Config
 
 def main():
     """
-    Main function to run the shop management system
-    Demonstrates Dependency Injection and Inversion of Control
+    main function to run the shop management system
+    demonstrates Dependency Injection and Inversion of Control
     """
     # initialize dependencies
     repository = ProductRepository(Config.DEFAULT_DATA_FILE)
