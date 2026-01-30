@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PEP 582
+__pypackages__/
+
+# Export files
+shop_export.*
+shop_data.*
+export_*.*
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Git
+.git/
+*.orig
+*.rej
