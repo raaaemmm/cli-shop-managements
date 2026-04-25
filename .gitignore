@@ -10,6 +10,7 @@ __pypackages__/
 shop_export.*
 shop_data.*
 export_*.*
+random_*.*
 
 # VS Code
 .vscode/
@@ -19,3 +20,6 @@ export_*.*
 .git/
 *.orig
 *.rej
+
+final_project_demo.mp4
+github_project_link.txt

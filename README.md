@@ -1,295 +1,319 @@
-# CLI Shop Management System
+# 🛒 CLI Shop Management System
 
-A console-based (CLI) inventory management system built with Python, demonstrating Object-Oriented Programming principles and design patterns.
+<div align="center">
 
-**Final Project - Object-Oriented Programming Course**
+![Python](https://img.shields.io/badge/Python-3.7%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![Architecture](https://img.shields.io/badge/Architecture-MVC-orange?style=for-the-badge)
+![Patterns](https://img.shields.io/badge/Design_Patterns-5%2B-blueviolet?style=for-the-badge)
+![Standard Library](https://img.shields.io/badge/Dependencies-Zero-brightgreen?style=for-the-badge)
 
-## 📋 Overview
+**A professional, console-based inventory management system built with Python — showcasing clean architecture, SOLID principles, and industry-standard design patterns.**
 
-This is my final project demonstrating the application of OOP concepts, SOLID principles, and design patterns in a real-world inventory management system. The project showcases clean code architecture and professional software development practices.
+[Features](#-features) · [Architecture](#️-architecture) · [Getting Started](#-getting-started) · [Usage](#-usage-guide) · [Design Patterns](#-design-patterns) · [Project Structure](#-project-structure)
+
+</div>
+
+---
+
+## 📌 Overview
+
+**CLI Shop Management System** is a fully-featured inventory management application that runs entirely in the terminal. Developed as a **Final Project** for an Object-Oriented Programming course, it demonstrates how real-world software engineering principles — MVC architecture, SOLID design, and multiple design patterns — can be applied to build a clean, maintainable, and extensible system.
+
+> 💡 **No external libraries required.** The entire application is built on Python's standard library only.
+
+---
 
 ## ✨ Features
 
-- Add, view, update, and delete products
-- Search products by ID, name, or category
-- View inventory statistics
-- Export data to JSON or CSV
-- Automatic data saving to CSV file
-- Input validation
-- Low stock alerts
+| Feature | Description |
+|---|---|
+| **Product CRUD** | Add, view, update, and delete products with full validation |
+| **Smart Search** | Search products by ID, name, or category |
+| **Inventory Stats** | Real-time statistics — total value, stock counts, category breakdown |
+| **Data Persistence** | Automatic CSV-based storage that survives between sessions |
+| **Export** | Export your inventory to JSON or CSV with one command |
+| **Low Stock Alerts** | Automatic warnings when product quantity falls below threshold |
+| **Input Validation** | Robust validation for all user inputs with clear error messages |
+| **Auto-increment IDs** | Product IDs are generated automatically — no manual entry required |
 
-## 🏗️ Design Patterns Used
+---
 
-This project demonstrates several important design patterns:
+## 🏗️ Architecture
 
-1. **MVC (Model-View-Controller)**
-   - Models: `Product` class (data)
-   - Views: `ConsoleView` class (display)
-   - Controllers: `ShopController` class (logic)
-
-2. **Repository Pattern**
-   - `ProductRepository` separates data access from business logic
-
-3. **Service Layer**
-   - `ProductService` contains business logic
-   - `ExportService` handles exports
-
-4. **Strategy Pattern**
-   - Different export strategies (JSON, CSV)
-
-5. **Dependency Injection**
-   - Classes receive their dependencies through constructors
-
-### SOLID Principles
-
-- **Single Responsibility**: Each class has one job
-- **Open/Closed**: Can add new features without changing existing code
-- **Liskov Substitution**: Interfaces can be swapped
-- **Interface Segregation**: Small, focused interfaces
-- **Dependency Inversion**: Depend on abstractions, not concrete classes
-
-
-## 📁 Project Structure
+This project follows the **MVC (Model-View-Controller)** pattern with layered architecture for clean separation of concerns:
 
 ```
-shop-management-system/
-│
-├── main.py                      # Application entry point
-├── config.py                    # Configuration settings
-├── README.md                    # Project documentation
-├── .gitignore                   # Git ignore rules
-│
-├── models/                      # Domain models (Entity layer)
-│   ├── __init__.py
-│   ├── base_model.py           # Abstract base model
-│   └── product.py              # Product entity with validation
-│
-├── repositories/                # Data access layer (Repository pattern)
-│   ├── __init__.py
-│   ├── i_repository.py         # Repository interface
-│   └── product_repository.py   # CSV data persistence
-│
-├── services/                    # Business logic layer (Service pattern)
-│   ├── __init__.py
-│   ├── base_service.py         # Base service with observer
-│   ├── product_service.py      # Product business logic
-│   ├── i_exporter.py           # Exporter interface
-│   └── export_service.py       # Export strategies (JSON/CSV)
-│
-├── controllers/                 # Application controllers (MVC)
-│   ├── __init__.py
-│   └── shop_controller.py      # Main controller coordinating flow
-│
-├── views/                       # Presentation layer (MVC)
-│   ├── __init__.py
-│   └── console_view.py         # Console UI
-│
-├── utils/                       # Utility helpers
-│   ├── __init__.py
-│   └── input_validator.py      # Input validation
-│
-└── data/                        # Data storage (auto-created)
-    ├── shop_data.csv           # Persistent storage
-    ├── shop_export.json        # JSON exports
-    └── shop_export.csv         # CSV exports
+┌─────────────────────────────────────────────────────────────────┐
+│                         PRESENTATION LAYER                       │
+│                      ConsoleView (views/)                        │
+└────────────────────────────┬────────────────────────────────────┘
+                             │
+┌────────────────────────────▼────────────────────────────────────┐
+│                         CONTROLLER LAYER                         │
+│                    ShopController (controllers/)                  │
+└──────────┬──────────────────────────────────────────────────────┘
+           │
+┌──────────▼──────────────────────────────────────────────────────┐
+│                         SERVICE LAYER                            │
+│          ProductService · ExportService · BaseService            │
+└──────────┬──────────────────────────────────────────────────────┘
+           │
+┌──────────▼──────────────────────────────────────────────────────┐
+│                       REPOSITORY LAYER                           │
+│                    ProductRepository (CSV)                       │
+└──────────┬──────────────────────────────────────────────────────┘
+           │
+┌──────────▼──────────────────────────────────────────────────────┐
+│                          DATA LAYER                              │
+│                  shop_data.csv  ·  exports/                      │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-## 📦 Requirements
+---
 
-- Python 3.7 or higher
-- No external libraries needed (uses Python standard library)
+## 🚀 Getting Started
 
-## 🚀 Installation & Running
+### Prerequisites
 
-1. Make sure Python is installed:
+- **Python 3.7 or higher**
+- No additional packages or pip installs needed
+
+Check your Python version:
+
 ```bash
 python --version
 ```
 
-2. Organize files in this structure:
-```
-shop-management-system/
-├── main.py
-├── config.py
-├── models/
-│   ├── __init__.py
-│   ├── base_model.py
-│   └── product.py
-├── repositories/
-│   ├── __init__.py
-│   ├── i_repository.py
-│   └── product_repository.py
-├── services/
-│   ├── __init__.py
-│   ├── base_service.py
-│   ├── product_service.py
-│   ├── i_exporter.py
-│   └── export_service.py
-├── controllers/
-│   ├── __init__.py
-│   └── shop_controller.py
-├── views/
-│   ├── __init__.py
-│   └── console_view.py
-└── utils/
-    ├── __init__.py
-    └── input_validator.py
+### Installation
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/raaaemmm/cli-shop-managements.git
+cd cli-shop-managements
 ```
 
-3. Run the program:
+**2. Run the application**
+
 ```bash
 python main.py
 ```
 
-## 💻 How to Use
+That's it — no virtual environment, no `pip install`, no configuration needed.
 
-The program shows a menu with these options:
+---
 
-1. **Add Product** - Create a new product (ID auto-generated)
-2. **View All Products** - See all products in a table
-3. **Update Product** - Change product information
-4. **Delete Product** - Remove a product
-5. **Search Products** - Find products by ID, name, or category
-6. **View Statistics** - See inventory summary
-7. **Save Data** - Manually save to CSV
-8. **Export to JSON** - Export all data as JSON
-9. **Export to CSV** - Export all data as CSV
-10. **Clear Screen** - Clear the display
-11. **Exit** - Close the program
+## 📖 Usage Guide
 
-### Example Usage
+When you launch the application, you are greeted with an interactive menu:
 
 ```
-# Run the program
+╔══════════════════════════════════════════════════════════════════════╗
+║               CLI SHOP MANAGEMENT SYSTEM                            ║
+╠══════════════════════════════════════════════════════════════════════╣
+║  1. Add Product          6. View Statistics                         ║
+║  2. View All Products    7. Save Data                               ║
+║  3. Update Product       8. Export to JSON                          ║
+║  4. Delete Product       9. Export to CSV                           ║
+║  5. Search Products     10. Clear Screen                            ║
+║                         11. Exit                                    ║
+╚══════════════════════════════════════════════════════════════════════╝
+```
+
+### Menu Options
+
+| Option | Action | Description |
+|--------|--------|-------------|
+| `1` | **Add Product** | Enter name, category, price, quantity, and optional supplier |
+| `2` | **View All Products** | Display all inventory in a formatted table |
+| `3` | **Update Product** | Modify any field of an existing product by ID |
+| `4` | **Delete Product** | Permanently remove a product from inventory |
+| `5` | **Search Products** | Find products by ID, name, or category (case-insensitive) |
+| `6` | **View Statistics** | See total products, total value, low stock count, and category breakdown |
+| `7` | **Save Data** | Manually save current inventory to CSV |
+| `8` | **Export to JSON** | Export full inventory as `shop_export.json` |
+| `9` | **Export to CSV** | Export full inventory as `shop_export.csv` |
+| `10` | **Clear Screen** | Clear the terminal display |
+| `11` | **Exit** | Safely close the program |
+
+### Example Workflow
+
+```bash
+# Start the system
 python main.py
 
-# Add a product
-Choose option 1
-Enter: Laptop, Electronics, 999.99, 10, TechSupply
+# Add a new product
+> Choose option 1
+> Name:     Laptop Pro
+> Category: Electronics
+> Price:    999.99
+> Quantity: 15
+> Supplier: TechSupply Co.
+✅ Product added successfully! [ID: PRD-001]
 
-# View all products
-Choose option 2
+# Search for it
+> Choose option 5
+> Search: "Laptop"
+✅ Found 1 product matching "Laptop"
 
-# Search for products
-Choose option 5
-Search by name: "Laptop"
-
-# Exit
-Choose option 11
+# View live statistics
+> Choose option 6
+📊 Total Products: 1 | Total Inventory Value: $14,999.85 | Low Stock: 0
 ```
 
-## 🎯 Project Objectives
+---
 
-This final project was developed to demonstrate:
+## 🎨 Design Patterns
 
-1. **Comprehensive OOP Implementation**
-   - Classes and objects
-   - Inheritance and polymorphism
-   - Encapsulation with properties
-   - Abstract classes and interfaces
+This project implements **6 industry-standard design patterns**:
 
-2. **Design Patterns Mastery**
-   - MVC architecture
-   - Repository pattern for data access
-   - Strategy pattern for flexible exports
-   - Dependency injection for loose coupling
-   - Observer pattern for event handling
+### 1. 🏛️ MVC — Model-View-Controller
+Cleanly separates data, display, and application logic into independent layers that can change without affecting each other.
 
-3. **SOLID Principles Application**
-   - Each class has a single, well-defined responsibility
-   - Code is open for extension but closed for modification
-   - Abstractions can be substituted without breaking functionality
-   - Interfaces are specific and focused
-   - Dependencies are on abstractions, not concrete implementations
+### 2. 🗃️ Repository Pattern
+`ProductRepository` abstracts all CSV read/write operations. The rest of the application never directly touches the file system — it only calls repository methods.
 
-4. **Professional Development Practices**
-   - Clean, readable code structure
-   - Proper error handling and validation
-   - Data persistence and file I/O
-   - User-friendly console interface
+### 3. ⚙️ Strategy Pattern
+Export functionality is interchangeable. `IExporter` defines the interface; `JSONExporter` and `CSVExporter` are concrete strategies. Adding a new export format (e.g., XML, Excel) requires zero changes to existing code.
 
-## 🎓 Learning Objectives
+### 4. 💉 Dependency Injection
+`ShopController` does not create its own dependencies — they are injected through the constructor. This enables easy swapping, mocking, and testing of components.
 
-This project demonstrates:
+### 5. 👁️ Observer Pattern
+`BaseService` implements an observer notification system. Registered observers are automatically notified when inventory data changes.
 
-- **Object-Oriented Programming**: Classes, inheritance, encapsulation
-- **Design Patterns**: MVC, Repository, Strategy, Dependency Injection
-- **SOLID Principles**: Writing maintainable code
-- **File I/O**: Reading/writing CSV and JSON files
-- **Input Validation**: Checking user input
-- **Error Handling**: Try-catch blocks and exceptions
+### 6. 🏭 Factory Method
+`ExportService` acts as a factory, instantiating the correct exporter class based on the requested format.
 
-## 📝 Key Classes
+---
+
+## 🧱 SOLID Principles
+
+| Principle | Application in This Project |
+|---|---|
+| **S** — Single Responsibility | Every class has exactly one reason to change (`Product` handles data, `ConsoleView` handles display, `ProductRepository` handles persistence) |
+| **O** — Open / Closed | New exporters, validators, or repository backends can be added without touching existing classes |
+| **L** — Liskov Substitution | `ProductRepository` can be swapped for any class implementing `IRepository` without breaking the system |
+| **I** — Interface Segregation | `IRepository` and `IExporter` are small, focused interfaces — no class is forced to implement methods it doesn't use |
+| **D** — Dependency Inversion | High-level modules (`ShopController`) depend on abstractions (`IRepository`), not on concrete implementations |
+
+---
+
+## 📁 Project Structure
+
+```
+cli-shop-managements/
+│
+├── main.py                      # Entry point — wires dependencies via DI
+├── config.py                    # Centralized configuration constants
+├── README.md                    # Project documentation
+├── .gitignore                   # Git ignore rules
+│
+├── models/                      # Domain models — Entity layer
+│   ├── base_model.py            # Abstract base with timestamp tracking
+│   └── product.py               # Product entity with properties & validation
+│
+├── repositories/                # Data access layer — Repository pattern
+│   ├── i_repository.py          # Abstract repository interface
+│   └── product_repository.py    # CSV-backed persistence implementation
+│
+├── services/                    # Business logic layer
+│   ├── base_service.py          # Base service with Observer pattern
+│   ├── product_service.py       # Product operations & business rules
+│   ├── i_exporter.py            # Exporter interface (Strategy pattern)
+│   └── export_service.py        # JSON & CSV export strategies
+│
+├── controllers/                 # MVC Controller layer
+│   └── shop_controller.py       # Coordinates view, service, and repository
+│
+├── views/                       # Presentation layer
+│   └── console_view.py          # Console UI — all display and user input
+│
+├── utils/                       # Utility helpers
+│   └── input_validator.py       # Reusable input validation functions
+│
+└── shop_data.csv                # Auto-created persistent data store
+```
+
+---
+
+## 🔑 Key Classes
 
 ### Models
-- **`Product`** - Product entity with validation and encapsulation
-- **`BaseModel`** - Abstract base class for all models
+| Class | Responsibility |
+|-------|----------------|
+| `BaseModel` | Abstract base with auto-timestamp and `validate()` hook |
+| `Product` | Full product entity with property decorators, validation, and stock utilities |
 
-### Views  
-- **`ConsoleView`** - Handles all display and user input (Presentation layer)
+### Views
+| Class | Responsibility |
+|-------|----------------|
+| `ConsoleView` | All console output and user input — zero business logic |
 
 ### Controllers
-- **`ShopController`** - Coordinates application flow (MVC Controller)
+| Class | Responsibility |
+|-------|----------------|
+| `ShopController` | Orchestrates the flow between view, services, and repository |
 
 ### Services
-- **`ProductService`** - Business logic for product operations
-- **`ExportService`** - Export functionality with Strategy pattern
-- **`BaseService`** - Base service with Observer pattern support
+| Class | Responsibility |
+|-------|----------------|
+| `ProductService` | Business logic — add, update, delete, search, statistics |
+| `ExportService` | Format detection and export strategy execution |
+| `BaseService` | Observer registration and notification infrastructure |
 
 ### Repositories
-- **`ProductRepository`** - Data access and CSV persistence (Repository pattern)
-- **`IRepository`** - Repository interface for abstraction
+| Class | Responsibility |
+|-------|----------------|
+| `IRepository` | Abstract interface defining the data-access contract |
+| `ProductRepository` | CSV file reading, writing, and in-memory caching |
 
 ### Utils
-- **`InputValidator`** - Input validation helpers
+| Class | Responsibility |
+|-------|----------------|
+| `InputValidator` | Reusable validation — numbers, strings, price, quantity |
 
-## 🏆 Project Highlights
+---
 
-### Design Patterns Implemented
-1. **MVC (Model-View-Controller)** - Separation of concerns
-2. **Repository Pattern** - Abstracted data access
-3. **Strategy Pattern** - Flexible export strategies (JSON/CSV)
-4. **Dependency Injection** - Loose coupling between components
-5. **Observer Pattern** - Event notification system
-6. **Factory Method** - Creating exporters
+## ⚙️ Configuration
 
-### SOLID Principles Applied
-- ✅ **Single Responsibility** - Each class has one clear purpose
-- ✅ **Open/Closed** - Can extend without modifying existing code
-- ✅ **Liskov Substitution** - Interfaces are interchangeable
-- ✅ **Interface Segregation** - Focused, minimal interfaces
-- ✅ **Dependency Inversion** - Depend on abstractions
+All system-wide settings live in `config.py` — no magic numbers scattered in the code:
 
-### Technical Features
-- ✅ Object-oriented design with inheritance and polymorphism
-- ✅ Encapsulation using Python properties
-- ✅ Abstract base classes and interfaces
-- ✅ Comprehensive input validation
-- ✅ Error handling with try-catch blocks
-- ✅ File I/O operations (CSV and JSON)
-- ✅ Auto-incrementing IDs
-- ✅ Data persistence between sessions
-- ✅ Clean console-based user interface
+```python
+class Config:
+    DEFAULT_DATA_FILE    = "shop_data.csv"
+    DEFAULT_EXPORT_JSON  = "shop_export.json"
+    DEFAULT_EXPORT_CSV   = "shop_export.csv"
+    TABLE_WIDTH          = 120
+    LOW_STOCK_THRESHOLD  = 10
+```
+
+To change the low-stock warning threshold or default filenames, update `config.py` — no other file needs to change.
+
+---
 
 ## 📄 License
 
-MIT License - Free to use for educational purposes.
+This project is licensed under the **MIT License** — free to use, modify, and distribute for educational and personal purposes.
 
 ---
 
-## 👨‍🏫 Course Information
+## 🎓 Course Information
 
-**🎓 My Final Project for Object-Oriented Programming Course**  
-*Demonstrating clean architecture, design patterns, and SOLID principles*
+<div align="center">
 
-📚 **Course**: Online Python Programming  
-🗓️ **Schedule**: Monday - Saturday, 9:00 PM - 10:00 PM  
-🏫 **Institution**: JomNum Tech  
-- 📘 Facebook: [JomNum Technology](https://web.facebook.com/jomnumtechnology)  
-- 💬 Telegram: [JomNum Tech](https://t.me/jomnumtech)  
+**Final Project — Object-Oriented Programming Course**
 
-👨‍💻 **Instructor**: Ing Davann
-
----
+| | |
+|---|---|
+| 📚 **Course** | Online Python Programming |
+| 🏫 **Institution** | JomNum Tech |
+| 🗓️ **Schedule** | Monday – Saturday, 9:00 PM – 10:00 PM |
+| 👨‍💻 **Instructor** | Ing Davann |
+| 📘 **Facebook** | [JomNum Technology](https://web.facebook.com/jomnumtechnology) |
+| 💬 **Telegram** | [JomNum Tech](https://t.me/jomnumtech) |
 
 *Moving forward together in the age of technology* 🚀
+
+</div>
